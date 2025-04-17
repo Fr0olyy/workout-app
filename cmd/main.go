@@ -41,16 +41,16 @@ func main() {
 
 	e.Use(middleware.CORS())
 	e.Use(middleware.Logger())
-	// Регистрируем обработчики ошибок
+
 	e.HTTPErrorHandler = middle.ErrorHandler
 	e.GET("*", middle.NotFoundHandler)
 
-	api := e.Group("/api", handlers.UserIdentity)
+	api := e.Group("/api")
 	api.GET("/profile", handlers.GetUserProfile)
 
-	auth := e.Group("/auth")
-	auth.POST("/sign-in", handlers.SignIn)
-	auth.POST("/sign-up", handlers.SignUp)
+	auth := api.Group("/auth")
+	auth.POST("/login", handlers.SignIn)
+	auth.POST("/register", handlers.SignUp)
 
-	e.Logger.Fatal(e.Start("localhost:5173"))
+	e.Logger.Fatal(e.Start("localhost:1312"))
 }
