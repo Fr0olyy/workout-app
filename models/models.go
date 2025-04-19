@@ -51,9 +51,9 @@ type ExerciseLog struct {
 	IsCompleted bool           `gorm:"column:is_completed;default:false"`
 	Times       []ExerciseTime `gorm:"foreignKey:ExerciseLogID"`
 
-	UserID       *uint `gorm:"column:user_id"`
-	WorkoutLogID *uint `gorm:"column:workout_log_id"`
-	ExerciseID   *uint `gorm:"column:exercise_id"`
+	UserID       uint `gorm:"column:user_id"`
+	WorkoutLogID uint `gorm:"column:workout_log_id"`
+	ExerciseID   uint `gorm:"column:exercise_id"`
 
 	User       *User       `gorm:"foreignKey:UserID"`
 	WorkoutLog *WorkoutLog `gorm:"foreignKey:WorkoutLogID"`
@@ -70,7 +70,7 @@ type ExerciseTime struct {
 	Repeat      int  `gorm:"default:0"`
 	IsCompleted bool `gorm:"column:is_completed;default:false"`
 
-	ExerciseLogID *uint        `gorm:"column:exercise_log_id"`
+	ExerciseLogID uint         `gorm:"column:exercise_log_id"`
 	ExerciseLog   *ExerciseLog `gorm:"foreignKey:ExerciseLogID"`
 }
 
@@ -82,8 +82,8 @@ type WorkoutLog struct {
 
 	IsCompleted bool `gorm:"column:is_completed;default:false"`
 
-	UserID    *uint `gorm:"column:user_id"`
-	WorkoutID *uint `gorm:"column:workout_id"`
+	UserID    uint `gorm:"column:user_id"`
+	WorkoutID uint `gorm:"column:workout_id"`
 
 	User         *User         `gorm:"foreignKey:UserID"`
 	Workout      *Workout      `gorm:"foreignKey:WorkoutID"`
